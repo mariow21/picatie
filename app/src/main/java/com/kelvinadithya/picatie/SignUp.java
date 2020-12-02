@@ -94,21 +94,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        Signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitForm();
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(SignUp.this,Log_in.class);
-                startActivity(in);
-
-            }
-        });
     }
 
     private void submitForm() {
@@ -116,75 +101,31 @@ public class SignUp extends AppCompatActivity {
         email1 = email.getText().toString().trim();
         pass1 = pass.getText().toString().trim();
 
+        mAuth.createUserWithEmailAndPassword(email1, pass1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Intent i = new Intent(getApplicationContext(), Log_in.class);
+                    startActivity(i);
+                    Toast.makeText(getApplicationContext(), "User Registered", Toast.LENGTH_LONG).show();
+                    finish();
+                    //Intent i = new Intent(getApplicationContext(), Log_In.class);
+                    //startActivity(i);
+                } else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
 
-        if (name1.isEmpty()) {
-            name.setError("Name is required");
-            name.requestFocus();
-            return;
-        }
-        if (email1.isEmpty()) {
-            email.setError("Email is required");
-            email.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
-            email.setError("Please enter a valid email");
-            email.requestFocus();
-            return;
-        }
-
-        if (pass1.isEmpty()) {
-            pass.setError("Password is required");
-            pass.requestFocus();
-            return;
-        }
-
-        if (pass1.length() < 6) {
-            pass.setError("Minimum lenght of password should be 6");
-            pass.requestFocus();
-            return;
-        }
-
-            mAuth.createUserWithEmailAndPassword(email1, pass1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Intent i = new Intent(getApplicationContext(), Log_in.class);
-                        startActivity(i);
-                        Toast.makeText(getApplicationContext(), "User Registered", Toast.LENGTH_LONG).show();
-                        finish();
-                        //Intent i = new Intent(getApplicationContext(), Log_In.class);
-                        //startActivity(i);
                     } else {
-                        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                            Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
-
-                        } else {
-                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
-            });
+
+            }
+        });
 
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 100 && resultCode == RESULT_OK){
-            Place place = Autocomplete.getPlaceFromIntent(data);
-            Location.setText(place.getAddress());
-        }
-        else if (resultCode == AutocompleteActivity.RESULT_ERROR){
-            Status status = Autocomplete.getStatusFromIntent(data);
-
-            Toast.makeText(this, status.getStatusMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
 }
