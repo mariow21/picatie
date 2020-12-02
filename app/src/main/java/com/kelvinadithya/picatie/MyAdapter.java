@@ -45,5 +45,24 @@ public class MyAdapter extends RecyclerView.Adapter<com.kelvinadithya.picatie.My
         });
     }
 
-}
+    @Override
+    public int getItemCount() {
+        return photoList.size();
+    }
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        public final ImageView imageView;
+
+        public ViewHolder(View view) {
+            super(view);
+            imageView = (ImageView) view.findViewById(R.id.rvPhoto);
+        }
+    }
+}
