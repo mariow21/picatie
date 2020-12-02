@@ -50,5 +50,6 @@ public class fullPhotoActivity extends AppCompatActivity {
             btn.setText(photo.getLikes().toString());
         }
     }
+
 }
 
