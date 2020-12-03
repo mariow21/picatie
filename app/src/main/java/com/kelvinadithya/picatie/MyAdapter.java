@@ -66,3 +66,4 @@ public class MyAdapter extends RecyclerView.Adapter<com.kelvinadithya.picatie.My
         }
     }
 }
+

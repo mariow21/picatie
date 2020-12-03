@@ -33,6 +33,8 @@ public class SlideshowFragment extends Fragment {
         email = root.findViewById(R.id.cl12);
         call = root.findViewById(R.id.constraintLayout12);
 
+
+
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

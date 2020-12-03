@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kelvinadithya.picatie.R;
+import com.kelvinadithya.picatie.ui.main.MainPhotoFragment;
 import com.kelvinadithya.picatie.ui.slideshow.SlideshowFragment;
 
 
@@ -48,6 +49,29 @@ public class GalleryFragment extends Fragment {
                 return true;
             }
         });
+
+        final BottomNavigationView topNavigationView =root.findViewById(R.id.top_navigation);
+        topNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
+                switch (item.getItemId()) {
+                    case R.id.action_recents1:
+                        fragment = new GalleryFragment();
+                        replaceFragment(fragment);
+                        Toast.makeText(getActivity(), "Credit", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_favorites2:
+                        fragment = new MainPhotoFragment();
+                        replaceFragment(fragment);
+                        Toast.makeText(getActivity(), "API", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+                return true;
+            }
+        });
+
 
         return root;
     }

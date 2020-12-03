@@ -23,6 +23,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/top_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
+        android:background="@color/lightblk"
+        app:itemBackground="@color/lightblk"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:itemTextAppearance="?android:attr/textAppearanceLarge"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/topbar" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
@@ -58,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
-    
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"

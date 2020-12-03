@@ -18,4 +18,6 @@
     <string name="featured_collections">Featured Collections</string>
     <string name="beautiful_free_photos">Beautiful, free photos.</string>
     <string name="oops_check_your_internet_and_press_retry">OOPS Check your Internet and press retry</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
