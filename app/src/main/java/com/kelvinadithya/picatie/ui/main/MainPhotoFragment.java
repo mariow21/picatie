@@ -52,4 +52,25 @@ public class MainPhotoFragment extends Fragment {
 
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        // TODO: Use the ViewModel
+
+
+    }
+    private void Photos(int f, int l, Order order) {
+        unsplash.getPhotos(f, l, order, new Unsplash.OnPhotosLoadedListener() {
+            @Override
+            public void onComplete(List<Photo> photos) {
+                MyAdapter adapter = new MyAdapter(photos, getActivity());
+                recyclerView12.setAdapter(adapter);
+            }
+
+            @Override
+            public void onError(String error) {
+            }
+        });
+    }
 }
